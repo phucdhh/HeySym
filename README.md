@@ -1,13 +1,12 @@
 # 🎓 HeySym - Hệ thống học SymPy với AI
 
-> Môi trường học tập trực tuyến tích hợp JupyterHub, nbgrader và AI trợ lý (Ollama) dành cho sinh viên học toán ký hiệu với SymPy.
+> Môi trường học tập trực tuyến tích hợp JupyterHub, nbgrader và AI trợ lý (Ollama) dành cho sinh viên học toán với SymPy.
 
 [![License](https://img.shields.io/badge/license-Educational-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 [![JupyterHub](https://img.shields.io/badge/JupyterHub-latest-orange.svg)](https://jupyterhub.readthedocs.io/)
 
 **🌐 Live Demo**: https://HeySym.truyenthong.edu.vn  
-**📋 Deployment Plan**: [PLAN.md](PLAN.md) - Hướng dẫn triển khai chi tiết từng bước (4 phases, 2-6 tuần)
 
 ---
 
@@ -47,12 +46,6 @@ jupyterhub -f config/jupyterhub_config.py
 ```
 
 Truy cập: http://127.0.0.1:3333
-
-**📋 Hướng dẫn triển khai đầy đủ**: Xem [PLAN.md](PLAN.md) với:
-- ✅ Phase 1: Setup môi trường (1-2 ngày)
-- ✅ Phase 2: Testing & configuration (3-5 ngày)  
-- ✅ Phase 3: Cloudflare Tunnel & Pilot (2-4 tuần)
-- ✅ Phase 4: Production & Scale (tuần 5+)
 
 ---
 
@@ -104,7 +97,7 @@ Internet → Cloudflare Tunnel → Mac Mini M2 (24GB RAM)
 - 📝 Làm và nộp bài tập trực tuyến
 - ✅ Nhận feedback tự động từ nbgrader
 
-### Dành cho Giáo viên
+### Dành cho Giảng viên
 - 📋 Tạo và quản lý assignments với nbgrader
 - 🔍 Chấm bài tự động với autograder
 - 👥 Quản lý nhiều lớp học
@@ -150,8 +143,6 @@ HeySym tích hợp Ollama với nhiều AI models:
 - **Exchange Directory**: `exchange/`
 - **Timezone**: Asia/Ho_Chi_Minh
 - **Auto-grading**: Enabled
-
-**📝 Chi tiết**: Xem config examples trong [PLAN.md](PLAN.md)
 
 ---
 
@@ -216,8 +207,6 @@ brew services restart ollama  # Restart if needed
 chmod -R 777 exchange/  # Fix permissions
 ```
 
-**🔍 Chi tiết**: Xem [PLAN.md - Troubleshooting](PLAN.md#troubleshooting) section.
-
 ---
 
 ## 🤝 Contributing
@@ -250,26 +239,14 @@ Built with amazing open-source projects:
 
 ## 📞 Contact & Support
 
-- **Author**: Nguyen Dang Minh Phuc
-- **Email**: nguyendangminhphuc@dhsphue.edu.vn
+- **Author**: Nguyễn Đăng Minh Phúc
+- **Email**: ndmphuc@hueuni.edu.vn
 - **Phone**: +84979555375
-- **Institution**: Truyền thông Educational Institution
+- **Institution**: Hue University of Education
 - **GitHub**: [@phucdhh](https://github.com/phucdhh)
 
 **🐛 Issues**: [GitHub Issues](https://github.com/phucdhh/HeySym/issues)  
 **💬 Discussions**: [GitHub Discussions](https://github.com/phucdhh/HeySym/discussions)
-
----
-
-## 🗺️ Roadmap
-
-- [x] **v1.0** - Core JupyterHub + nbgrader + AI (Current ✅)
-- [ ] **v1.1** - User dashboard với statistics
-- [ ] **v1.2** - Jupyter AI chat history persistence
-- [ ] **v1.3** - Multiple course support UI
-- [ ] **v2.0** - Kubernetes deployment option
-- [ ] **v2.1** - Real-time collaboration (Google Colab-like)
-- [ ] **v3.0** - Mobile app
 
 ---
 
@@ -278,16 +255,7 @@ Built with amazing open-source projects:
 **Status**: ✅ **Ready for Production**  
 **Version**: 1.0  
 **Last Updated**: February 2, 2026  
-**Deployment Readiness**: 9.1/10 ⭐
 
-**Tính khả thi đánh giá**: RẤT CAO
-- ✅ Kiến trúc kỹ thuật: 10/10
-- ✅ Hạ tầng (24GB RAM): 9/10
-- ✅ Stack công nghệ: 10/10
-- ✅ Bảo mật: 9/10
-- ✅ AI Integration: 10/10
-
-**Next Steps**: Theo [PLAN.md](PLAN.md) để triển khai trong 2-6 tuần.
 
 ---
 
