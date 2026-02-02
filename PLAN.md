@@ -653,7 +653,7 @@ cloudflared tunnel login
 # Browser sẽ mở → chọn domain truyenthong.edu.vn
 
 # Tạo tunnel mới
-cloudflared tunnel create sympy-lab
+cloudflared tunnel create heysym
 
 # Lưu Tunnel ID
 cloudflared tunnel list
@@ -678,7 +678,7 @@ ingress:
 
 ```bash
 # Start tunnel manually (test)
-cloudflared tunnel run sympy-lab
+cloudflared tunnel run heysym
 
 # Trong terminal khác, start JupyterHub
 cd /Users/mac/HeySym
@@ -782,7 +782,7 @@ Tạo `/Library/LaunchDaemons/com.cloudflare.tunnel.plist`:
         <string>/opt/homebrew/bin/cloudflared</string>
         <string>tunnel</string>
         <string>run</string>
-        <string>sympy-lab</string>
+        <string>heysym</string>
     </array>
     <key>WorkingDirectory</key>
     <string>/Users/mac/.cloudflared</string>

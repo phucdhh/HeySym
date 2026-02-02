@@ -1,0 +1,39 @@
+{
+  "model_provider_id": "ollama",
+  "embeddings_provider_id": "ollama",
+  "api_keys": {},
+  "fields": {
+    "base_url": "http://localhost:11434"
+  },
+  "send_with_shift_enter": false,
+  "default_language": "vietnamese",
+  "default_model": "kimi",
+  "available_models": [
+    {
+      "name": "Kimi (Cloud)",
+      "id": "kimi",
+      "description": "Model Cloud AI tiếng Việt, hiệu suất cao, tiết kiệm RAM. RECOMMENDED."
+    },
+    {
+      "name": "GPT OSS (Cloud)",
+      "id": "gpt_oss",
+      "description": "Model Cloud AI đa ngôn ngữ, hiệu suất cao."
+    },
+    {
+      "name": "GLM (Cloud)",
+      "id": "glm",
+      "description": "Model Cloud AI đa ngôn ngữ, hỗ trợ tiếng Trung và tiếng Anh."
+    },
+    {
+      "name": "DeepSeek R1 8B (Local)",
+      "id": "deepseek-r1:8b",
+      "description": "Model Local AI, hoạt động offline, cần 8GB RAM. Dự phòng khi mất mạng."
+    }
+  ],
+  "magic_commands": {
+    "%%ai": {
+      "description": "Gọi AI để trợ giúp giải bài toán SymPy",
+      "default_model": "kimi"
+    }
+  }
+}
