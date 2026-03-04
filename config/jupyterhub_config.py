@@ -133,8 +133,9 @@ c.Spawner.environment.update({
     # IPython profile chứa startup script HeySym (00_heysym_ai.py)
     'IPYTHONDIR': '/Users/mac/HeySym/config/ipython',
 
-    # Cerebras Cloud API key
-    'CEREBRAS_API_KEY': '***REMOVED***',
+    # Cerebras Cloud API key — đọc từ .env hoặc biến môi trường hệ thống
+    # Tạo file .env từ .env.example và điền key thực (xem README)
+    'CEREBRAS_API_KEY': os.environ.get('CEREBRAS_API_KEY', ''),
 })
 
 # ============================================================================
