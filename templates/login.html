@@ -1,0 +1,109 @@
+{% extends "page.html" %}
+
+{% block title %}Sign In - HeySym{% endblock %}
+
+{% block main %}
+<div class="container" id="login-main">
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            
+            {% block login %}
+            <div class="panel panel-default">
+                <div class="panel-heading auth-form-header">
+                    <h3 style="margin: 0; text-align: center; font-weight: 600;">
+                        <i class="fa fa-sign-in"></i> Sign In to HeySym
+                    </h3>
+                    <p style="margin: 10px 0 0 0; text-align: center; font-size: 13px; opacity: 0.9;">
+                        AI-Powered Mathematics Learning
+                    </p>
+                </div>
+                
+                <div class="panel-body">
+                    {% if custom_html %}
+                    {{ custom_html | safe }}
+                    {% elif login_service %}
+                    <div class="service-login">
+                        <a role="button" class='btn btn-jupyter btn-lg' href='{{authenticator_login_url}}'>
+                            Sign in with {{login_service}}
+                        </a>
+                    </div>
+                    {% else %}
+                    
+                    {% if login_error %}
+                    <div class="alert alert-danger" role="alert">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        <strong>Login failed!</strong> {{ login_error }}
+                    </div>
+                    {% endif %}
+                    
+                    <form action="{{login_url}}?next={{next}}" method="post" role="form">
+                        <div class="form-group">
+                            <label for="username_input">Username:</label>
+                            <input
+                                id="username_input"
+                                type="text"
+                                autocapitalize="off"
+                                autocorrect="off"
+                                class="form-control"
+                                name="username"
+                                val="{{username}}"
+                                placeholder="Enter your username"
+                                required
+                                autofocus
+                            />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password_input">Password:</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                name="password"
+                                id="password_input"
+                                placeholder="Enter your password"
+                                required
+                            />
+                        </div>
+                        
+                        <div class="form-group" style="margin-top: 20px;">
+                            <input
+                                type="submit"
+                                id="login_submit"
+                                class='btn btn-jupyter btn-lg btn-block'
+                                value='Sign In'
+                            />
+                        </div>
+                        
+                        {% block login_footer %}
+                        {% if allow_signup %}
+                        <div class="text-center" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #E0E0E0;">
+                            <p style="margin: 0; color: #666;">
+                                Don't have an account?
+                            </p>
+                            <a href="{{signup_url}}" style="color: #4A90E2; font-weight: 600;">
+                                <i class="fa fa-user-plus"></i> Sign up to create a new user
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endblock login_footer %}
+                    </form>
+                    {% endif %}
+                    
+                </div>
+            </div>
+            {% endblock login %}
+            
+            <!-- Welcome Message -->
+            <div class="text-center" style="margin-top: 20px; color: #666;">
+                <p>
+                    <i class="fa fa-graduation-cap"></i> Learn mathematics with AI assistance
+                </p>
+                <p style="font-size: 12px; color: #999;">
+                    Powered by Ollama (deepseek-r1, glm-4.7 and more)
+                </p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

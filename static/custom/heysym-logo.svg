@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="200" height="50">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7B68EE;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Mathematical symbol - Sigma (Σ) with modern twist -->
+  <g transform="translate(5, 5)">
+    <!-- Background circle -->
+    <circle cx="20" cy="20" r="18" fill="url(#grad1)" opacity="0.2"/>
+    
+    <!-- Stylized Σ (Sigma) -->
+    <path d="M 12 10 L 28 10 L 18 20 L 28 30 L 12 30 L 12 28 L 24 28 L 16 20 L 24 12 L 12 12 Z" 
+          fill="url(#grad1)" 
+          stroke="url(#grad1)" 
+          stroke-width="0.5"/>
+    
+    <!-- Small infinity symbol overlay -->
+    <path d="M 22 22 Q 24 20 26 22 Q 28 24 26 26 Q 24 24 22 26 Q 20 24 22 22 Z" 
+          fill="none" 
+          stroke="#7B68EE" 
+          stroke-width="1" 
+          opacity="0.6"/>
+  </g>
+  
+  <!-- Text: HeySym -->
+  <g transform="translate(50, 0)">
+    <!-- "Hey" part in lighter color -->
+    <text x="0" y="28" 
+          font-family="'Segoe UI', Arial, sans-serif" 
+          font-size="22" 
+          font-weight="600" 
+          fill="#4A90E2">Hey</text>
+    
+    <!-- "Sym" part in gradient -->
+    <text x="45" y="28" 
+          font-family="'Segoe UI', Arial, sans-serif" 
+          font-size="22" 
+          font-weight="700" 
+          fill="url(#grad1)">Sym</text>
+    
+    <!-- Tagline -->
+    <text x="0" y="42" 
+          font-family="'Segoe UI', Arial, sans-serif" 
+          font-size="8" 
+          font-weight="400" 
+          fill="#999" 
+          letter-spacing="1">MATH WITH AI</text>
+  </g>
+</svg>

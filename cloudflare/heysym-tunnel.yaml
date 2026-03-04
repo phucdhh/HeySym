@@ -1,0 +1,30 @@
+# Cloudflare Tunnel Configuration for HeySym
+# Domain: heysym.truyenthong.edu.vn
+# Backend: JupyterHub on localhost:3333
+
+tunnel: bd882e16-2443-4300-8f2c-e3f431cc25f2
+credentials-file: /Users/mac/HeySym/cloudflare/heysym-credentials.json
+
+# Ingress rules - order matters!
+ingress:
+  # Main domain -> JupyterHub
+  - hostname: heysym.truyenthong.edu.vn
+    service: http://localhost:3333
+    originRequest:
+      # WebSocket support for Jupyter notebooks
+      noTLSVerify: false
+      connectTimeout: 30s
+      # Keep connections alive for WebSocket
+      keepAliveConnections: 100
+      keepAliveTimeout: 300s
+      # Disable chunked encoding for streaming (SSE/WebSocket)
+      disableChunkedEncoding: true
+      # Allow long-running streaming responses (AI inference)
+      httpHostHeader: "localhost:3333"
+  
+  # Catch-all rule (required)
+  - service: http_status:404
+
+# Optional: Logging
+# logDirectory: /Users/mac/HeySym/logs
+# loglevel: info

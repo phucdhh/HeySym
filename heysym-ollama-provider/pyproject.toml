@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "heysym-ollama-provider"
+version = "1.0.0"
+description = "Ollama provider for Jupyter AI - HeySym"
+requires-python = ">=3.9"
+dependencies = [
+    "jupyter_ai_magics",
+    "langchain-ollama",
+]
+
+[project.entry-points."jupyter_ai_magics"]
+ollama = "heysym_ollama_provider.provider:OllamaProvider"
+cerebras = "heysym_ollama_provider.cerebras_provider:CerebrasProvider"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["heysym_ollama_provider*"]

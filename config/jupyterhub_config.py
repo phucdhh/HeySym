@@ -108,6 +108,13 @@ c.Spawner.cmd = ['/Users/mac/HeySym/venv/bin/jupyterhub-singleuser']
 # Disable system user requirement (quan trọng!)
 c.Spawner.disable_user_config = True
 
+# Fix CORS - cho phép request từ domain Cloudflare tunnel
+# Không có setting này, Jupyter server sẽ block WebSocket/API từ heysym.truyenthong.edu.vn
+c.Spawner.args = [
+    '--ServerApp.allow_origin=https://heysym.truyenthong.edu.vn',
+    '--ServerApp.allow_credentials=True',
+]
+
 # ============================================================================
 # 4. JUPYTER AI - KẾT NỐI OLLAMA
 # ============================================================================
@@ -116,12 +123,18 @@ c.Spawner.disable_user_config = True
 c.Spawner.environment.update({
     # Ollama endpoint
     'OLLAMA_BASE_URL': 'http://localhost:11434',
-    
+
     # Các model có sẵn (Cloud AI ưu tiên, Local AI dự phòng)
     'JUPYTER_AI_DEFAULT_MODEL': 'ollama:kimi',
-    
+
     # Thư mục cho Jupyter AI cache
     'JUPYTER_AI_CACHE_DIR': '/Users/mac/HeySym/.jupyter_ai_cache',
+
+    # IPython profile chứa startup script HeySym (00_heysym_ai.py)
+    'IPYTHONDIR': '/Users/mac/HeySym/config/ipython',
+
+    # Cerebras Cloud API key
+    'CEREBRAS_API_KEY': '***REMOVED***',
 })
 
 # ============================================================================
@@ -185,7 +198,28 @@ c.JupyterHub.concurrent_spawn_limit = 10
 # c.ConfigurableHTTPProxy.auth_token = '<your-token-here>'
 
 # ============================================================================
-# 10. ADDITIONAL PATHS
+# 10. CUSTOM UI - LOGO, TEMPLATES & STYLING
+# ============================================================================
+
+# Custom logo và branding
+c.JupyterHub.logo_file = '/Users/mac/HeySym/static/custom/heysym-logo.svg'
+
+# Custom templates directory
+c.JupyterHub.template_paths = ['/Users/mac/HeySym/templates']
+
+# Custom static files directory - must be a dict mapping URL path to filesystem path
+c.JupyterHub.extra_static_paths = {
+    'custom': '/Users/mac/HeySym/static/custom'
+}
+
+# Custom CSS
+c.JupyterHub.template_vars = {
+    'announcement': '',  # Có thể thêm announcement ở đây
+    'custom_css': True,
+}
+
+# ============================================================================
+# 11. ADDITIONAL PATHS
 # ============================================================================
 
 # Thư mục home cho users (mỗi user sẽ có thư mục riêng)

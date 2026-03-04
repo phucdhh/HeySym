@@ -1,0 +1,123 @@
+{% extends "page.html" %}
+
+{% block title %}Home - HeySym{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            
+            <!-- Welcome Section -->
+            <div class="jumbotron" style="background: linear-gradient(135deg, #4A90E2 0%, #7B68EE 100%); color: white; border-radius: 10px; padding: 40px;">
+                <h1 style="font-weight: 700; margin-bottom: 20px;">
+                    <i class="fa fa-rocket"></i> Welcome to HeySym!
+                </h1>
+                <p style="font-size: 18px; opacity: 0.95;">
+                    AI-Powered Mathematics Learning Platform với Ollama models
+                </p>
+                <p style="font-size: 14px; opacity: 0.9; margin-top: 15px;">
+                    <i class="fa fa-check-circle"></i> Chain-of-thought reasoning
+                    <span style="margin: 0 10px;">•</span>
+                    <i class="fa fa-check-circle"></i> Real-time streaming
+                    <span style="margin: 0 10px;">•</span>
+                    <i class="fa fa-check-circle"></i> LaTeX support
+                </p>
+            </div>
+            
+            <!-- Server Management -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 style="margin: 0; font-weight: 600;">
+                        <i class="fa fa-server"></i> Your Notebook Server
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {% if not user.spawner.active %}
+                    <div class="text-center" style="padding: 30px 0;">
+                        <p style="font-size: 16px; color: #666; margin-bottom: 20px;">
+                            Your notebook server is not running.
+                        </p>
+                        <form action="{{base_url}}spawn" method="post">
+                            <input type="hidden" name="_xsrf" value="{{ xsrf_token }}">
+                            <button type="submit" class="btn btn-jupyter btn-lg">
+                                <i class="fa fa-play"></i> Start My Server
+                            </button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-success" role="alert">
+                        <i class="fa fa-check-circle"></i>
+                        <strong>Server is running!</strong> Your notebook server is ready.
+                    </div>
+                    <div class="text-center" style="margin-top: 20px;">
+                        <a href="{{base_url}}user/{{user.name}}/lab" class="btn btn-jupyter btn-lg" style="margin-right: 10px;">
+                            <i class="fa fa-flask"></i> Go to JupyterLab
+                        </a>
+                        <a href="{{base_url}}user/{{user.name}}/tree" class="btn btn-default btn-lg">
+                            <i class="fa fa-folder-open"></i> Classic Notebook
+                        </a>
+                    </div>
+                    <div class="text-center" style="margin-top: 15px;">
+                        <form action="{{base_url}}api/users/{{user.name}}/server" method="delete" style="display: inline;">
+                            <input type="hidden" name="_xsrf" value="{{ xsrf_token }}">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Stop your server?')">
+                                <i class="fa fa-stop"></i> Stop My Server
+                            </button>
+                        </form>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center" style="padding: 30px 20px;">
+                            <i class="fa fa-book" style="font-size: 48px; color: #4A90E2; margin-bottom: 15px;"></i>
+                            <h4 style="font-weight: 600;">Documentation</h4>
+                            <p style="color: #666; font-size: 14px;">
+                                Learn how to use HeySym and OllamaHelper
+                            </p>
+                            <a href="{{base_url}}user/{{user.name}}/tree/OLLAMA_HELPER_GUIDE.md" class="btn btn-primary btn-sm">
+                                View Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center" style="padding: 30px 20px;">
+                            <i class="fa fa-robot" style="font-size: 48px; color: #7B68EE; margin-bottom: 15px;"></i>
+                            <h4 style="font-weight: 600;">AI Models</h4>
+                            <p style="color: #666; font-size: 14px;">
+                                deepseek-r1:8b, glm-4.7:cloud and more
+                            </p>
+                            <a href="{{base_url}}user/{{user.name}}/tree/heysym_ollama_demo.ipynb" class="btn btn-primary btn-sm">
+                                Try Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center" style="padding: 30px 20px;">
+                            <i class="fa fa-question-circle" style="font-size: 48px; color: #50C878; margin-bottom: 15px;"></i>
+                            <h4 style="font-weight: 600;">Support</h4>
+                            <p style="color: #666; font-size: 14px;">
+                                Need help? Check troubleshooting guide
+                            </p>
+                            <a href="{{base_url}}user/{{user.name}}/tree/OLLAMA_HELPER_TROUBLESHOOTING.md" class="btn btn-primary btn-sm">
+                                Get Help
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

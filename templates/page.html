@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HeySym - AI-Powered Math Learning{% endblock %}</title>
+    
+    <!-- JupyterHub default styles -->
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{{ static_url('css/style.min.css') }}" type="text/css"/>
+    {% endblock %}
+    
+    <!-- Custom HeySym styles -->
+    <link rel="stylesheet" href="{{ static_url('custom/custom.css') }}" type="text/css"/>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ static_url('custom/heysym-logo.svg') }}">
+    
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+    {% block nav_bar %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#thebelab-header" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{logo_url or base_url}}">
+                    <img src="{{ static_url('custom/heysym-logo.svg') }}" alt="HeySym" id="jupyter-main-logo">
+                    <span style="margin-left: 15px; font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.9); vertical-align: middle;">
+                        AI-Powered Mathematics Learning Platform
+                    </span>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="thebelab-header">
+                <ul class="nav navbar-nav navbar-right">
+                    {% block nav_bar_right %}
+                    {% if user %}
+                    <li>
+                        <a href="{{base_url}}home">
+                            <i aria-hidden="true" class="fa fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{base_url}}token">
+                            <i aria-hidden="true" class="fa fa-key"></i> Token
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i aria-hidden="true" class="fa fa-user"></i> {{user.name}} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{logout_url}}">
+                                <i aria-hidden="true" class="fa fa-sign-out"></i> Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{{login_url}}">
+                            <i aria-hidden="true" class="fa fa-sign-in"></i> Login
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endblock %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endblock %}
+
+    {% block main %}
+    {% endblock %}
+
+    <!-- HeySym Footer (inspired by AIThink) -->
+    <footer id="footer">
+        <div class="footer-content">
+            <!-- Navigation Links -->
+            <div class="footer-links">
+                <a href="https://truyenthong.edu.vn/" target="_blank">Home</a>
+                <a href="https://heytex.truyenthong.edu.vn/" target="_blank">HeyTeX</a>
+                <a href="https://aithink.truyenthong.edu.vn/" target="_blank">AIThink</a>
+                <a href="https://heyphom.truyenthong.edu.vn/" target="_blank">HeyPhom</a>
+                <a href="{{base_url}}home">Dashboard</a>
+                <a href="mailto:ndmphuc@hueuni.edu.vn">Contact</a>
+            </div>
+            
+            <!-- Logo and Info -->
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="{{ static_url('custom/heysym-logo.svg') }}" alt="HeySym">
+                </div>
+                <p>
+                    <strong>HeySym</strong> - AI-Powered Mathematics Learning Platform
+                </p>
+                <p>
+                    Developed by <a href="https://www.ganjingworld.com/@ndmphuc" target="_blank" style="color: #50C878; font-weight: 600;">Nguyễn Đăng Minh Phúc</a>
+                </p>
+                <p style="font-size: 11px; color: #95A5A6; margin-top: 10px;">
+                    © 2026 truyenthong.edu.vn | Built with ❤️ for education
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    {% block script %}
+    <script src="{{static_url('components/jquery/dist/jquery.min.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{static_url('components/bootstrap/dist/js/bootstrap.min.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{static_url('components/requirejs/require.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+      // Configure RequireJS base URL so spawn-pending redirect works correctly
+      require.config({
+        baseUrl: "{{static_url('')}}",
+        paths: {
+          jquery: "components/jquery/dist/jquery.min",
+          bootstrap: "components/bootstrap/dist/js/bootstrap.min",
+          moment: "components/moment/moment"
+        }
+      });
+    </script>
+    {% endblock %}
+</body>
+</html>
